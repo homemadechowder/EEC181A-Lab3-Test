@@ -1,0 +1,30 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/altera/15.0
+vsdram_master
+!s110 1454990873
+!i10b 1
+!s100 84lil4B]hSo`gRi:=RToe0
+IGK]iP8Sb<XhJSeGl7jdz20
+V`JN@9S9cnhjKRR_L]QIcM3
+dC:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/Lab 3 Test/Part 3
+w1454990691
+8C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/Lab 3 Test/Part 3/sdram_master.v
+FC:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/Lab 3 Test/Part 3/sdram_master.v
+L0 6
+OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1454990873.005000
+!s107 C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/Lab 3 Test/Part 3/sdram_master.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/Lab 3 Test/Part 3/sdram_master.v|
+!i113 1
+o-work work

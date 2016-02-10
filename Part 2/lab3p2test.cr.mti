@@ -1,0 +1,8 @@
+{C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/Lab 3 Test/reg32_master_avalon_interface.v} {1 {vlog -work work -stats=none {C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/Lab 3 Test/reg32_master_avalon_interface.v}
+Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+-- Compiling module reg32_master_avalon_interface
+
+Top level modules:
+	reg32_master_avalon_interface
+
+} {} {}}
