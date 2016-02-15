@@ -9,22 +9,22 @@ z2
 cModel Technology
 dC:/altera/15.0
 vsdram_master
-!s110 1455239888
+!s110 1455537635
 !i10b 1
-!s100 DN@0CZOF0cLdM`S;EL8n00
-I`@EZ=7oK[?>RLH<VH1H?b1
+!s100 Fn4lTUDiAPVn?[6TfZ[`n3
+I2k:9JlS3nB66>Zk?F[<4K2
 V`JN@9S9cnhjKRR_L]QIcM3
-dC:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/EEC181A-Lab3-Test/Part 3
-w1455239847
-8C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/EEC181A-Lab3-Test/Part 3/sdram_master.v
-FC:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/EEC181A-Lab3-Test/Part 3/sdram_master.v
+dD:/Users/Samuel/Documents/15-16/Winter Quarter/EEC181A/Labs/EEC181A-Lab3-Test/Part 3
+w1455536448
+8D:/Users/Samuel/Documents/15-16/Winter Quarter/EEC181A/Labs/EEC181A-Lab3-Test/Part 3/sdram_master.v
+FD:/Users/Samuel/Documents/15-16/Winter Quarter/EEC181A/Labs/EEC181A-Lab3-Test/Part 3/sdram_master.v
 L0 6
 OV;L;10.3d;59
 r1
 !s85 0
 31
-!s108 1455239888.503000
-!s107 C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/EEC181A-Lab3-Test/Part 3/sdram_master.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Samuel/Documents/15-16/EEC181A/EEC181A Lab/EEC181A-Lab3-Test/Part 3/sdram_master.v|
+!s108 1455537635.518000
+!s107 D:/Users/Samuel/Documents/15-16/Winter Quarter/EEC181A/Labs/EEC181A-Lab3-Test/Part 3/sdram_master.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Users/Samuel/Documents/15-16/Winter Quarter/EEC181A/Labs/EEC181A-Lab3-Test/Part 3/sdram_master.v|
 !i113 1
 o-work work

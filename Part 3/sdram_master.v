@@ -19,7 +19,8 @@ module sdram_master(
 	//output reg [0:0] done
 	);
 	
-	reg [3:0] counter = 4'b0;
+	reg [3:0] counter1 = 4'b0;  //Manages which value to compare
+	reg [1:0] counter2 = 2'b0;
 	reg [3:0] state1 = 4'b0;
 	reg [3:0] state2 = 4'b0;
 	reg [15:0] readin = 16'b0;
@@ -38,18 +39,20 @@ module sdram_master(
 			// Read in a value
 			4'b0000:
 			begin
+				write_n <= 1;
 				dataready <= 1'b0;
 				read_n <= 0;
-				address [15:0] <= counter[3:0];
+				address [15:0] <= counter1[3:0];
 				chipselect <= 1;
 				byteenable [1:0] <= 2'b11;
 				if(waitrequest == 0)
 				begin
 					//readin [15:0] <= readdata[15:0];
 					beginread <= 1;
-					read_n <= 1;
-					chipselect <= 0;
-					byteenable <= 0;
+					counter2 [1:0] <= 2'b01;
+					//read_n <= 1;
+					//chipselect <= 0;
+					//byteenable <= 0;
 					state1 <= 4'b0001;
 				end
 			end
@@ -63,9 +66,10 @@ module sdram_master(
 				if(waitrequest == 0)
 				begin
 					//curr_max [15:0] <= readdata[15:0];
-					read_n <= 1;
-					chipselect <= 0;
-					byteenable <= 0;
+					//read_n <= 1;
+					//chipselect <= 0;
+					//byteenable <= 0;
+					counter2 [1:0] <= 2'b10;
 					state1 <= 4'b0010;
 				end
 			end
@@ -79,9 +83,10 @@ module sdram_master(
 				if(waitrequest == 0)
 				begin
 					//curr_min [15:0] <= readdata[15:0];
-					read_n <= 1;
-					chipselect <= 0;
-					byteenable <= 0;
+					//read_n <= 1;
+					//chipselect <= 0;
+					//byteenable <= 0;
+					counter2 [1:0] <=  2'b11;
 					state1 <= 4'b0011;
 				end
 			end
@@ -92,29 +97,35 @@ module sdram_master(
 				begin
 					if(curr_min [15:0] > curr_max [15:0])
 					begin
+						read_n <= 1;
+						write_n <= 0;
 						state1 <= 4'b0100;
 					end
 					else if(readin [15:0] > curr_max [15:0])
 					begin
+						read_n <= 1;
+						write_n <= 0;
 						state1 <= 4'b0110;
 					end
 					else if(readin[15:0] < curr_min[15:0])
 					begin
+						read_n <= 1;
+						write_n <= 0;
 						state1 <= 4'b0111;
 					end
 					else
 					begin
-						if(counter [3:0] == 0)
+						if(counter1 [3:0] == 0)
 						begin
-							counter [3:0] <= 3;
+							counter1 [3:0] <= 3;
 						end
-						else if(counter [3:0] == 9)
+						else if(counter1 [3:0] == 9)
 						begin
-							counter [3:0] <= 0;
+							counter1 [3:0] <= 0;
 						end
 						else
 						begin
-							counter [3:0] <= counter [3:0] + 1;
+							counter1 [3:0] <= counter1 [3:0] + 1;
 						end
 						state1 <= 4'b0000;
 					end
@@ -130,13 +141,13 @@ module sdram_master(
 				writedata [15:0] <= curr_min [15:0];
 				if(waitrequest == 0)
 				begin
-					write_n <= 1;
-					chipselect <= 0;
-					byteenable [1:0] <= 2'b00;
+					//write_n <= 1;
+					//chipselect <= 0;
+					//byteenable [1:0] <= 2'b00;
 					state1 <= 4'b0101;
 				end
 			end
-			// If minimum > maximum, max write
+			// If minimum > maximum, min write
 			4'b0101:
 			begin
 				write_n <= 0;
@@ -147,9 +158,9 @@ module sdram_master(
 				if(waitrequest == 0)
 				begin
 					
-					write_n <= 1;
-					chipselect <= 0;
-					byteenable [1:0] <= 2'b00;
+					//write_n <= 1;
+					//chipselect <= 0;
+					//byteenable [1:0] <= 2'b00;
 					state1 <= 4'b0000;
 				end
 			end
@@ -163,20 +174,20 @@ module sdram_master(
 				writedata [15:0] <= readin [15:0];
 				if(waitrequest == 0)
 				begin
-					write_n <= 1;
-					chipselect <= 0;
-					byteenable [1:0] <= 2'b00;
-					if(counter [3:0] == 0)
+					//write_n <= 1;
+					//chipselect <= 0;
+					//byteenable [1:0] <= 2'b00;
+					if(counter1 [3:0] == 0)
 					begin
-						counter [3:0] <= 3;
+						counter1 [3:0] <= 3;
 					end
-					else if(counter [3:0] == 9)
+					else if(counter1 [3:0] == 9)
 					begin
-						counter [3:0] <= 0;
+						counter1 [3:0] <= 0;
 					end
 					else
 					begin
-						counter [3:0] <= counter [3:0] + 1;
+						counter1 [3:0] <= counter1 [3:0] + 1;
 					end
 					state1 <= 4'b0000;
 				end
@@ -191,20 +202,20 @@ module sdram_master(
 				writedata [15:0] <= readin [15:0];
 				if(waitrequest == 0)
 				begin
-					write_n <= 1;
-					chipselect <= 0;
-					byteenable [1:0] <= 2'b00;
-					if(counter [3:0] == 0)
+					//write_n <= 1;
+					//chipselect <= 0;
+					//byteenable [1:0] <= 2'b00;
+					if(counter1 [3:0] == 0)
 					begin
-						counter [3:0] <= 3;
+						counter1 [3:0] <= 3;
 					end
-					else if(counter [3:0] == 9)
+					else if(counter1 [3:0] == 9)
 					begin
-						counter [3:0] <= 0;
+						counter1 [3:0] <= 0;
 					end
 					else
 					begin
-						counter [3:0] <= counter [3:0] + 1;
+						counter1 [3:0] <= counter1 [3:0] + 1;
 					end
 					state1 <= 4'b0000;
 				end
@@ -218,29 +229,32 @@ module sdram_master(
 			begin
 				if(beginread)
 				begin
-					if(readdatavalid)
+					if(readdatavalid && counter2 [1:0] > 0)
 					begin
 						readin[15:0] <= readdata[15:0];
 						state2 <= 4'b0001;
 					end
 				end
 			end
+
 			4'b0001:
 			begin
-				if(readdatavalid)
+				if(readdatavalid && counter2 [1:0] > 1)
 				begin
 					curr_max [15:0] <= readdata[15:0];
 					state2 <= 4'b0010;
 				end
 			end
+			// Reads in data to curr_min
 			4'b0010:
 			begin
-				if(readdatavalid)
+				if(readdatavalid && counter2 [1:0] > 2)
 				begin
 					curr_min [15:0] <= readdata[15:0];
 					state2 <= 4'b0000;
+					counter2 [1:0] <= 2'b00;
 					beginread <= 1'b0;
-					dataready <= 1;
+					dataready <= 1'b1;
 				end
 			end
 		endcase
